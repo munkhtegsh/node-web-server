@@ -17,6 +17,11 @@ app.set('view engine', 'hbs'); //This line is optional as long as you provide th
 The "views" folder is the default location. You can override this using a call to app.set like we use to set the view engine:
 app.set('views', './other-folder') or app.set('views', path.join(__dirname, 'views'));
 */
+
+// app.use((req, res, next) => { //this middleware won't let other pages to render
+//     res.render('maintain.hbs');
+// });
+
 app.use(express.static(__dirname + '/public')); //when you want to register middlewares app.use()
 
 //keep track of how our server is working 
@@ -31,9 +36,6 @@ app.use((req, res, next) => { //next()
     next(); //keep the program to continue run
 });
 
-app.use((req, res, next) => { //this middleware won't let other pages to render
-    res.render('maintain.hbs');
-});
 
 hbs.registerHelper('getCurrentYear', () => { //first argument is name of the helper fn, second arg is fn
     return new Date().getFullYear();

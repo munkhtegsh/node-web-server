@@ -18,9 +18,7 @@ The "views" folder is the default location. You can override this using a call t
 app.set('views', './other-folder') or app.set('views', path.join(__dirname, 'views'));
 */
 
-// app.use((req, res, next) => { //this middleware won't let other pages to render
-//     res.render('maintain.hbs');
-// });
+// git
 
 app.use(express.static(__dirname + '/public')); //when you want to register middlewares app.use()
 
@@ -60,6 +58,12 @@ app.get('/', (req, res) => {
     });
 });
 
+app.get('/projects', (req, res) => {
+    res.render('projects.hbs', {
+        pageTitle: "Project page"
+    })
+})
+
 app.get('/about', (req, res) => {
     // res.send('About page');
     res.render('about.hbs', { 
@@ -79,3 +83,4 @@ app.get('/bad', (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server is up on port ${PORT}`);
 });
+
